@@ -3,6 +3,7 @@ import { Routes, Services } from '../utils/constants';
 import { Controller, Post, Get, Body, Inject } from '@nestjs/common';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { IUserService } from 'src/user/user';
+import { instanceToPlain } from 'class-transformer';
 
 @Controller(Routes.AUTH)
 export class AuthController {
@@ -12,20 +13,17 @@ export class AuthController {
   ) {}
 
   @Post('register')
-  register(@Body() createUserDto: CreateUserDto) {
+  async register(@Body() createUserDto: CreateUserDto) {
     // console.log(createUserDto);
-    this.userService.createUser(createUserDto);
+    return instanceToPlain(await this.userService.createUser(createUserDto));
   }
 
   @Post('login')
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   login() {}
 
   @Post('logout')
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   logout() {}
 
   @Get('status')
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   status() {}
 }
