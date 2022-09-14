@@ -6,7 +6,7 @@ import { User } from 'src/utils/typeorm';
 
 export class SessionSerializer extends PassportSerializer {
   constructor(
-    @Inject(Services.AUTH) private readonly userService: IUserService,
+    @Inject(Services.USER) private readonly userService: IUserService,
   ) {
     super();
   }

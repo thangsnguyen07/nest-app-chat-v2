@@ -18,6 +18,11 @@ export class AuthService implements IAuthService {
     if (!user)
       throw new HttpException('Invalid Creadential', HttpStatus.UNAUTHORIZED);
 
-    return await comparePassword(userCredential.password, user.password);
+    const isPasswordValid = await comparePassword(
+      userCredential.password,
+      user.password,
+    );
+
+    return isPasswordValid ? user : null;
   }
 }
