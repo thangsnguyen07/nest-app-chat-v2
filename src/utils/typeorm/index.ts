@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv';
 dotenv.config({ path: `${__dirname}/../../../.env.development` });
 import { DataSource } from 'typeorm';
-import { User, Session } from './entities';
+import { User, Session, Conversation } from './entities';
 
-const entities = [User, Session];
+const entities = [User, Session, Conversation];
 export const AppDataSource = new DataSource({
   type: 'mysql',
   host: process.env.MYSQL_DB_HOST,
@@ -15,5 +15,5 @@ export const AppDataSource = new DataSource({
   synchronize: true,
 });
 
-export { User, Session };
+export { User, Session, Conversation };
 export default entities;
