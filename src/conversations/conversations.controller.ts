@@ -2,7 +2,7 @@ import { Body, Controller, Get, Inject, Post, UseGuards } from '@nestjs/common';
 import { AuthenticationGuard } from 'src/auth/utils/auth.guard';
 import { Routes, Services } from 'src/utils/constants';
 import { AuthUser } from 'src/utils/decorators';
-import { User } from 'src/utils/typeorm';
+import { User } from 'src/utils/typeorm/entities';
 import { IConversationsService } from './conversations';
 import { CreateConversationDto } from './dtos/CreateConversation.dto';
 

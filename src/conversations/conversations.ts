@@ -1,4 +1,4 @@
-import { Conversation, User } from 'src/utils/typeorm';
+import { Conversation, User } from 'src/utils/typeorm/entities';
 import { CreateConversationParams } from 'src/utils/types';
 
 export interface IConversationsService {

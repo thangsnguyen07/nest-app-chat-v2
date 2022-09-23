@@ -5,7 +5,8 @@ import { TypeormStore } from 'connect-typeorm/out';
 
 import * as session from 'express-session';
 import * as passport from 'passport';
-import { AppDataSource, Session } from './utils/typeorm';
+import { AppDataSource } from './utils/typeorm';
+import { Session } from './utils/typeorm/entities';
 
 async function bootstrap() {
   const { PORT, COOKIE_SECRET } = process.env;

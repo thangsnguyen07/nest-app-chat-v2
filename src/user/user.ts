@@ -1,4 +1,4 @@
-import { User } from 'src/utils/typeorm';
+import { User } from 'src/utils/typeorm/entities';
 import { CreateUserDetails, FindUserParams } from 'src/utils/types';
 
 export interface IUserService {

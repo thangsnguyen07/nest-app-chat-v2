@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IUserService } from 'src/user/user';
 import { Services } from 'src/utils/constants';
-import { Conversation, User } from 'src/utils/typeorm';
+import { Conversation, User } from 'src/utils/typeorm/entities';
 import { CreateConversationParams } from 'src/utils/types';
 import { Repository } from 'typeorm';
 import { IConversationsService } from './conversations';

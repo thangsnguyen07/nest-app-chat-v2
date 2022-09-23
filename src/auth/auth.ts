@@ -1,4 +1,4 @@
-import { User } from 'src/utils/typeorm';
+import { User } from 'src/utils/typeorm/entities';
 import { UserCredential } from 'src/utils/types';
 
 export interface IAuthService {
