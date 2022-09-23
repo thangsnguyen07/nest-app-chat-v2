@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConversationsModule } from './conversations/conversations.module';
 import { UserModule } from './user/user.module';
 import { AppDataSource } from './utils/typeorm';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { AppDataSource } from './utils/typeorm';
         return AppDataSource;
       },
     }),
+    MessagesModule,
   ],
   controllers: [],
   providers: [],
