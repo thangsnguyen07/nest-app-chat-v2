@@ -1,4 +1,4 @@
-import { User } from './typeorm';
+import { User } from './typeorm/entities';
 
 export type CreateUserDetails = {
   email: string;
@@ -15,6 +15,10 @@ export type UserCredential = {
 export type FindUserParams = Partial<{
   id: number;
   email: string;
+}>;
+
+export type FindUserOptions = Partial<{
+  selectAll: boolean;
 }>;
 
 export type CreateConversationParams = {
