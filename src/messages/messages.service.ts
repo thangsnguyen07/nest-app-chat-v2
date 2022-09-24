@@ -40,6 +40,21 @@ export class MessagesService implements IMessagesService {
       author: user,
     });
 
-    return await this.messageRepository.save(newMessage);
+    const savedMessage = await this.messageRepository.save(newMessage);
+    conversation.lastMessage = savedMessage;
+    await this.conversationRepository.save(conversation);
+    return;
+  }
+
+  async getMessagesFromConversations(
+    conversationId: number,
+  ): Promise<Message[]> {
+    return this.messageRepository.find({
+      where: { conversation: { id: conversationId } },
+      order: {
+        createdAt: 'DESC',
+      },
+      relations: ['author'],
+    });
   }
 }

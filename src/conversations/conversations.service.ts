@@ -57,29 +57,42 @@ export class ConversationsService implements IConversationsService {
   }
 
   findConversationById(id: number): Promise<Conversation> {
-    return this.conversationRepository.findOneBy({ id: id });
+    return this.conversationRepository.findOne({
+      where: { id },
+      relations: [
+        'creator',
+        'recipient',
+        'lastMessage',
+        'messages',
+        'messages.author',
+      ],
+    });
   }
 
   getConversations(id: number): Promise<Conversation[]> {
-    return this.conversationRepository
-      .createQueryBuilder('conversation')
-      .leftJoin('conversation.creator', 'creator')
-      .addSelect([
-        'creator.id',
-        'creator.firstName',
-        'creator.lastName',
-        'creator.email',
-      ])
-      .leftJoin('conversation.recipient', 'recipient')
-      .addSelect([
-        'recipient.id',
-        'recipient.firstName',
-        'recipient.lastName',
-        'recipient.email',
-      ])
-      .where('creator.id = :id', { id })
-      .orWhere('recipient.id = :id', { id })
-      .orderBy('conversation.id', 'DESC')
-      .getMany();
+    return (
+      this.conversationRepository
+        .createQueryBuilder('conversation')
+        .leftJoin('conversation.creator', 'creator')
+        .addSelect([
+          'creator.id',
+          'creator.firstName',
+          'creator.lastName',
+          'creator.email',
+        ])
+        .leftJoin('conversation.recipient', 'recipient')
+        .addSelect([
+          'recipient.id',
+          'recipient.firstName',
+          'recipient.lastName',
+          'recipient.email',
+        ])
+        // .leftJoin('conversation.lastMessage', 'lastMessage')
+        // .addSelect(['lastMessage.id'])
+        .where('creator.id = :id', { id })
+        .orWhere('recipient.id = :id', { id })
+        .orderBy('conversation.id', 'DESC')
+        .getMany()
+    );
   }
 }
